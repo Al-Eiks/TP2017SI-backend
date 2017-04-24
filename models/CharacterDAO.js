@@ -1,11 +1,11 @@
-const DB = require('../models/Database');
-const rad2deg = require('rad2deg');
-const deg2rad = require('deg2rad');
+const DB = require('../models/Database')
+const rad2deg = require('rad2deg')
+const deg2rad = require('deg2rad')
 
 module.exports = {
-  getById(id) {
+  getById (id) {
     return DB.accessor.query(
-      'SELECT * FROM characters WHERE id = ${characterID}',
+      `SELECT * FROM characters WHERE id = ${characterID}`,
       { characterID: id }
     )
       .then((result) => {
