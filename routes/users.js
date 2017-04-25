@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-const UserDAO = require('../models/UserDAO');
+var express = require('express')
+var router = express.Router()
+const UserDAO = require('../models/UserDAO')
 
 /***
  * Get Users
@@ -12,22 +12,22 @@ router.get('/', function (req, res, next) {
         .json({
           status: 'success',
           users: users
-        });
-    });
-});
+        })
+    })
+})
 
 /***
  * Get User with ID
  */
 router.get('/:id', function (req, res, next) {
-  var id = parseInt(req.params.id);
+  var id = parseInt(req.params.id)
   UserDAO.getById(id)
     .then((user) => {
       res.status(200)
         .json({
           status: 'success',
           user: user
-        });
+        })
     })
 
     .catch((error) =>
@@ -37,20 +37,20 @@ router.get('/:id', function (req, res, next) {
           message: error
         })
     )
-});
+})
 
 /***
  * Create user
  */
 router.post('/', function (req, res, next) {
-  var name = req.body.user.name;
-  var email = req.body.user.email;
+  var name = req.body.user.name
+  var email = req.body.user.email
   if (name === undefined) {
     res.status(500)
       .json({
         status: 'Error',
         message: 'Missing parameter(s)'
-      });
+      })
   }
 
   UserDAO.create(name, email)
@@ -60,7 +60,7 @@ router.post('/', function (req, res, next) {
           status: 'success',
           message: 'Inserted one user',
           user: user
-        });
+        })
     })
     .catch((error) =>
       res.status(500)
@@ -69,20 +69,20 @@ router.post('/', function (req, res, next) {
           message: error
         })
     )
-});
+})
 
 /***
  * Delete a User
  */
 router.delete('/:id', function (req, res, next) {
-  var id = parseInt(req.params.id);
+  var id = parseInt(req.params.id)
   UserDAO.delete(id)
     .then((result) => {
       res.status(200)
         .json({
           status: 'success',
           message: result
-        });
+        })
     })
     .catch((error) =>
       res.status(500)
@@ -91,26 +91,26 @@ router.delete('/:id', function (req, res, next) {
           message: error
         })
     )
-});
+})
 
 /***
  * Modify a User
  */
 
 router.put('/:id', function (req, res, next) {
-  var id = parseInt(req.params.id);
-  var name = req.body.user.name;
-  var email = req.body.user.email;
-  var alliance_id = req.body.user.alliance_id;
+  var id = parseInt(req.params.id)
+  var name = req.body.user.name
+  var email = req.body.user.email
+  var allianceId = req.body.user.alliance_id
 
-  UserDAO.update(id, name, email, alliance_id)
+  UserDAO.update(id, name, email, allianceId)
     .then((user) => {
       res.status(200)
         .json({
           status: 'success',
           message: 'modified a user',
           user: user
-        });
+        })
     })
     .catch((error) =>
       res.status(500)
@@ -119,20 +119,20 @@ router.put('/:id', function (req, res, next) {
           message: error
         })
     )
-});
+})
 
 /***
  * Get Characters
  */
 router.get('/:id/characters', function (req, res, next) {
-  var id = parseInt(req.params.id);
+  var id = parseInt(req.params.id)
   UserDAO.getCharacters(id)
     .then((characters) => {
       res.status(200)
         .json({
           status: 'success',
           characters: characters
-        });
+        })
     })
     .catch((error) =>
       res.status(500)
@@ -141,6 +141,6 @@ router.get('/:id/characters', function (req, res, next) {
           message: error
         })
     )
-});
+})
 
-module.exports = router;
+module.exports = router
