@@ -7,7 +7,7 @@ module.exports = {
     )
       .then((result) => {
         if (result.length === 0) {
-          throw 'ALLIANCE NOT_FOUND'
+          throw new Error('ALLIANCE NOT_FOUND')
         }
         return result[ 0 ]
       })
@@ -34,7 +34,7 @@ module.exports = {
       })
       .then((result) => {
         if (result.length === 0) {
-          throw 'ALLIANCE NOT CREATED'
+          throw new Error('ALLIANCE NOT CREATED')
         }
         return result[ 0 ]
       })
@@ -61,7 +61,7 @@ module.exports = {
       })
       .then((result) => {
         if (result.length === 0) {
-          throw 'ALLIANCE NOT_FOUND'
+          throw new Error('ALLIANCE NOT_FOUND')
         }
         return result[ 0 ]
       })
